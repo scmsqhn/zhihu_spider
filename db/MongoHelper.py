@@ -104,7 +104,10 @@ class MongoHelper(ISqlHelper):
     def findAnyOne(self, value=None):
       if value:
         try:
-          count = random.randint(1,10)
+          try:
+            count = random.randint(1,30)
+          except:
+            count = random.randint(1,30)
           items = self.collection.find({}, limit=count).sort(
             [("_id", pymongo.ASCENDING)])
           results = []
@@ -373,9 +376,6 @@ class MongoHelper(ISqlHelper):
       print('MongoExport.targetItems', targetItems)
       return targetItems
       
-    def get_ip_req_addr(self, dict):
-        mongohelper.select_colletion("zhihu_coll")
-        mongohelper.insert(dict)    
 
 
 if __name__ == '__main__':
